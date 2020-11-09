@@ -9,19 +9,22 @@ from settings import (
     TITLE,
     WIDTH
 )
+from sprites import Player
 
 
 class Game:
     def __init__(self):
         pg.init()
         pg.mixer.init()
-        self.screen = pg.display.set_mode((WIDTH, HEIGHT))
+        self.screen = pg.display.set_mode((WIDTH, HEIGHT), pg.SCALED)
         pg.display.set_caption(TITLE)
         self.clock = pg.time.Clock()
         self.running = True
 
     def new(self):
         self.all_sprites = pg.sprite.Group()
+        self.player = Player()
+        self.all_sprites.add(self.player)
         self.run()
 
     def run(self):
